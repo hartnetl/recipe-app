@@ -35,7 +35,7 @@ class Recipe(models.Model):
     tags = TaggableManager()
     status = models.IntegerField(choices=STATUS, default=0)
     featured_image = CloudinaryField('image', default='placeholder')
-    approved = models.BooleanField(default=False)
+    approved = models.BooleanField(default=True)
     category = models.CharField(max_length=9, choices=CATEGORY_CHOICE,
                                 default='OTHER')
     saved = models.ManyToManyField(User, related_name='saved_recipes',

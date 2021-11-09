@@ -139,14 +139,14 @@
             <div class="card-body">
                 {% if commented %}
                 <div class="alert alert-success" role="alert" id="comment-id">
-                    Your comment is pending approval. Please be patient.
+                    Your comment has been sent
                 </div>
                 {% else %}
                 {% if user.is_authenticated %}
 
                 <h3  class="comment-colour">Leave a comment:</h3>
                 <p>Posting as: {{ user.username }}</p>
-                <form method="post" style="margin-top: 1.3em;" onsubmit="adminNotification();">
+                <form method="post" style="margin-top: 1.3em;">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
                     <button type="submit" id="comment-button" class="btn box-button">Submit</button>
