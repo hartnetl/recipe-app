@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<h1>CREATE A RECIPE</h1>
+
+<!-- Modal button -->
+<button type="button" class="btn btn-lg text-info" data-bs-toggle="modal" data-bs-target="#helpModal">
+    <i class="fas fa-question-circle"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="helpModalLabel">IMPORTANT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                The text editor used in this form isn't currently compatible with mobiles. Please use desktop version
+                for a better experience.
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="POST" enctype="multipart/form-data" onsubmit="adminNotification();">
+
+    <!-- Security token -->
+    {% csrf_token %}
+    <div class="container recipe-form">
+        <div class="card">
+            <div class="card-body">
+                {% crispy form %}
+            </div>
+        </div>
+        <button class="form-submit box-button" type="submit">Submit</button>
+    </div>
+
+</form>
+
+
+{% endblock %}

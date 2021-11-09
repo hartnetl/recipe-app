@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<form method="post" class="centered mt-5" >{% csrf_token %}
+     
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+     
+        <input type="submit" value="Confirm" class="box-button">
+        <input type=button value="Cancel"  class="box-button" onClick="javascript:history.go(-1);">
+        <!-- goback function credit: 
+            https://stackoverflow.com/questions/524992/django-templates-create-a-back-link  -->
+    </form>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-center">404: Page not found</h1>
+<img id="lost-img" alt="map"
+    src="https://res.cloudinary.com/hartnetl/image/upload/v1635829413/map_ltllap.png">
+
+<h2 class="text-center" id="msg-404">Uh oh! It seems you've gotten lost on your culinary adventure</h2>
+<h3 class="text-center" id="404-redirect">Come <a href="{% url 'recipes' %}">this way</a> to get back to finding delicious food <i class="fas fa-utensils"></i></h3>
+
+{% endblock %}

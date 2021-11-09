@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if user.is_authenticated and user == recipe.creator %}
+<a href="{% url 'update' recipe.slug %}" role="button" class="btn btn-outline-warning owner-buttons">Edit recipe</a>
+<a href="{% url 'delete' recipe.slug %}" role="button" class="btn btn-outline-warning owner-buttons">Delete recipe</a>
+{% elif user.is_superuser %}
+<a href="{% url 'delete' recipe.slug %}" role="button" class="btn btn-outline-warning owner-buttons">Delete recipe</a>
+{% endif %}
+
+
+<!-- Featured image header -->
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0 text-center">
+            <div class="col masthead-text">
+                <h1 class="recipe-title">{{ recipe.title }}</h1>
+                <p class="recipe-subtitle">{{ recipe.creator }} | {{ recipe.date_created }}</p>
+                <strong>
+                    {% if user.is_authenticated %}
+                    <form class="d-inline" action="{% url 'recipe_save' recipe.slug %}" method="POST">
+                        {% csrf_token %}
+                        {% if saves %}
+                        <button type="submit" name="recipe_id" value="{{recipe.slug}}" class="btn-like"><i
+                                class="fas fa-star"></i></button>
+                        {% else %}
+                        <button type="submit" name="recipe_id" value="{{recipe.slug}}" class="btn-like"><i
+                                class="far fa-star"></i></button>
+                        {% endif %}
+                    </form>
+                    {% endif %}
+                </strong>
+            </div>
+        </div>
+        <br>
+        <div class="row g-0 text-center">
+            <div class="d-none col d-md-block masthead-image">
+                {% if "placeholder" in recipe.featured_image.url %}
+                <img alt="Lord of the Recipes logo" src="https://res.cloudinary.com/hartnetl/image/upload/v1634056214/temp-logo_lkdghp.png">
+                {% else %}
+                <img alt="User uploaded image" src=" {{ recipe.featured_image.url }}">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Post content -->
+
+<div class="container">
+    <div class="row">
+        <div class="col card mb-4  mt-3 left  top">
+            <div class="card-body">
+                <p class="card-text ">
+                    <ul id="about-recipe">
+                        <li><strong>Servings: </strong>{{ recipe.servings | safe }}</li>
+                        <li><strong>Preparation Time: </strong>{{ recipe.prep_time | safe }}</li>
+                        <li> <strong>Cooking Time: </strong>{{ recipe.cook_time | safe }}</li>
+                    </ul>
+                <p class="card-text ">
+                    <strong>About:</strong><br>
+                    {{ recipe.about | safe }}
+                </p>
+                {% if recipe.url %}
+                <p class="card-text ">
+                    <strong>Original url:</strong><br>
+                    <a href="{{ recipe.url }}" target="_blank">{{ recipe.url }}</a>
+                </p>
+                {% endif %}
+                {% if recipe.nutrition %}
+                <p class="card-text ">
+                    <strong>Nutrition:</strong><br>
+                    {{ recipe.nutrition | safe }}
+                </p>
+                {% endif %}
+                <p class="card-text ">
+                    <strong>Ingredients:</strong><br>
+                    {{ recipe.ingredients | safe }}
+                </p>
+                <p class="card-text ">
+                    <strong>Method:</strong><br>
+                    {{ recipe.method | safe }}
+                </p>
+                <p class="card-text ">
+                    <strong>Tags:</strong>
+                    {% for tag in recipe.tags.all %}
+                        {{ tag.name }} , 
+                    {% endfor %}
+                </p>
+                <p class="card-text ">
+                    <strong>Category:</strong>
+                    {{ recipe.get_category_display | safe }}
+                </p>
+                <div class="row">
+                    <div class="col-1">
+                        {% with comments.count as total_comments %}
+                        <strong class="text-secondary"><i class="far fa-comments"></i>
+                            {{ total_comments }}</strong>
+                        {% endwith %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+
+    <!-- Comments -->
+
+    <div class="row">
+        <div class="col-md-7 card mb-4 mt-3">
+            <h3 class="comment-colour mt-3">Comments:</h3>
+            <div class="card-body">
+                {% for comment in comments %}
+                <div class="comments">
+                    <p class="fw-bold">
+                        {{ comment.name }}
+                        <span class=" text-muted fst-italic">
+                            {{ comment.date_posted }}
+                        </span> wrote:
+                    </p>
+                    <p class="comment-callout">
+                        {{ comment.message }}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-md-1"></div>
+
+        <!-- Add comments-->
+        <div class="col-md-4 card mb-4 mt-3 ">
+            <div class="card-body">
+                {% if commented %}
+                <div class="alert alert-success" role="alert" id="comment-id">
+                    Your comment is pending approval. Please be patient.
+                </div>
+                {% else %}
+                {% if user.is_authenticated %}
+
+                <h3  class="comment-colour">Leave a comment:</h3>
+                <p>Posting as: {{ user.username }}</p>
+                <form method="post" style="margin-top: 1.3em;" onsubmit="adminNotification();">
+                    {{ comment_form | crispy }}
+                    {% csrf_token %}
+                    <button type="submit" id="comment-button" class="btn box-button">Submit</button>
+                </form>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

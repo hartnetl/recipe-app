@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+
+{% block content %}
+<h1>{% trans "Sign Up" %}</h1>
+<div class="centered bottom-margin" id="signup-box">
+
+  <p id="sign-up-msg">Welcome! Just fill in this short form and you'll be a member of our community. <br><span
+      class="smaller-text">Already have an account? Then please sign in <a href="{{ login_url }}">here</a> <i
+        class="far fa-paper-plane"></i></span></p>
+  <div class="inner-box">
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="box-button" type="submit">{% trans "Sign Up" %} &raquo;</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

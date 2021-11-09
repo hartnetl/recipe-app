@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<a href="{% url 'create' %}" role="button" aria-disabled="true" class="btn btn-outline-warning create-button">
+    Create a recipe</a>
+{% endif %}
+
+<h1>BREAKFAST</h1>
+
+<!-- Category buttons -->
+<a href="{% url 'recipes' %}" class="btn btn-outline-secondary" role="button" aria-disabled="true">All</a>
+<a href="{% url 'breakfast' %}" class="btn btn-secondary" role="button" aria-disabled="true">Breakfast</a>
+<a href="{% url 'lunch' %}" class="btn btn-outline-success" role="button" aria-disabled="true">Lunch</a>
+<a href="{% url 'dinner' %}" class="btn btn-outline-danger" role="button" aria-disabled="true">Dinner</a>
+<a href="{% url 'drinks' %}" class="btn btn-outline-warning" role="button" aria-disabled="true">Drinks</a>
+<a href="{% url 'other' %}" class="btn btn-outline-info" role="button" aria-disabled="true">Other</a>
+
+
+<!-- flip card recipes -->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-12 mt-3 left">
+            <div class="row">
+
+                {% for recipe in recipe_list %}
+
+                <div class="col-md-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+
+                            <!-- FRONT OF CARD -->
+                            <div class="flip-card-front">
+                                <div class="image-container">
+                                    {% if "placeholder" in recipe.featured_image.url %}
+                                    <img class="card-img-top" alt="lord of the recipes logo"
+                                        src="https://res.cloudinary.com/hartnetl/image/upload/v1634056214/temp-logo_lkdghp.png">
+                                    {% else %}
+                                    <img class="card-img-top" alt="user uploaded recipe image"
+                                        src=" {{ recipe.featured_image.url }}">
+                                    {% endif %}
+                                </div>
+                                <h2 class="card-title">{{ recipe.title }}</h2>
+                                <a href="{% url 'full_recipe' recipe.slug %}" role="button"
+                                    class="recipe-link btn btn-warning btn-sm d-lg-none">Go to recipe</a>
+                            </div>
+
+                            <!-- BACK OF CARD-->
+                            <div class="flip-card-back scroll-text">
+
+                                <p class="recipe-card-text recipe-card-link">Author: {{ recipe.creator }} <br>
+                                    {{ recipe.date_created }} </p>
+                                <a href="{% url 'full_recipe' recipe.slug %}" role="button"
+                                    class="recipe-link btn btn-warning btn-sm">Go to recipe</a>
+                                <hr>
+                                <p class="recipe-card-text">{{ recipe.about | safe }} </p>
+                                <p class="recipe-card-text d-none d-lg-block">
+                                    Category:
+                                    {{  recipe.get_category_display }} <br>
+                                    Tags:
+                                    {% for tag in recipe.tags.all %}
+                                        {{ tag.name }}
+                                    {% endfor %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                {% if forloop.counter|divisibleby:4 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGINATION -->
+
+    {% if is_paginated %}
+    <div class="pagination">
+        <div class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; First</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

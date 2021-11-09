@@ -1,0 +1,577 @@
+/*
+#################
+    GENERAL 
+#################
+ */
+
+* {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* main colours */
+
+a {
+  text-decoration: none;
+}
+
+.navbar,
+.footer-basic,
+.box {
+  background-color: rgb(222, 235, 176);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(222, 235, 176);
+}
+
+.my-title,
+#welcome-msg,
+.nav-item a,
+.footer-basic {
+  color: #0e0924;
+}
+
+/* navbar */
+
+.my-title {
+  font-family: 'Bubblegum Sans', cursive;
+  text-align: center;
+  color: #0e0924;
+}
+
+#welcome-msg {
+  padding-left: 20%;
+  padding-top: 10%;
+  margin-left: 5%;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.nav-item a:hover,
+.footer-basic ul a:hover {
+  transform: scale(1.2);
+  font-weight: bolder;
+}
+
+/* general styling for all pages */
+
+body {
+  background-color: #0e0924;
+}
+
+main {
+  min-height: 85vh;
+}
+
+.box {
+  margin: 5% 0;
+  border-radius: 15px;
+  padding: 3%;
+  text-align: center;
+  box-shadow: 10px 10px 5px rgb(38, 26, 61);
+  height: fit-content;
+}
+
+.box-button {
+  background-color: rgb(27, 139, 111);
+  box-shadow: 5px 5px 7px rgb(18, 99, 79);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.box-button a {
+  color: rgb(191, 209, 201);
+  letter-spacing: 2px;
+  margin: 3px;
+}
+
+.box-button:hover {
+  background-color: rgb(238, 230, 230);
+  box-shadow: 5px 5px 7px rgb(124, 122, 122);
+
+}
+
+.box-button a:hover {
+  color: rgb(27, 139, 111);
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Architects Daughter', cursive;
+}
+
+.welcome-msg-main {
+  color: #aaa;
+  position: absolute;
+  right: 3vw;
+  margin-top: 2vh;
+}
+
+h1 {
+  padding-top: 1rem;
+}
+
+/*
+#################
+    FOOTER 
+#################
+ */
+
+.footer-basic {
+  padding: 10px 0;
+}
+
+.footer-basic ul {
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+.footer-basic li {
+  padding: 0 10px;
+}
+
+.footer-basic ul a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer-basic .social {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.footer-basic .social>a {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #0e0924;
+  margin: 0 8px;
+  color: inherit;
+  opacity: 0.75;
+}
+
+
+.footer-basic .social>a:hover {
+  color: rgb(222, 235, 176);
+  background-color: #0e0924;
+}
+
+.footer-basic .copyright {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #201744;
+  margin-bottom: 0;
+}
+
+/*
+#################
+RECIPE LIST PAGE 
+#################
+ */
+
+.create-button {
+  position: absolute;
+  right: 15vw;
+  margin-top: 2vh;
+}
+
+.tag-name {
+  color: white;
+}
+
+.tag-name:hover {
+  font-weight: bold;
+  color: white;
+}
+
+/* FLIP CARDS */
+
+.flip-card {
+  background-color: transparent;
+  height: 40vh;
+  box-shadow: 2px 2px 7px rgb(164, 185, 180);
+  perspective: 1000px;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  background-color: white;
+}
+
+/* Do horizontal flip when you move the mouse over the card */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* Style the front side */
+.flip-card-front {
+  background-color: #fff;
+  color: #000;
+}
+
+
+/* Style the back side */
+.flip-card-back {
+  padding-top: 3%;
+  background-color: #fff;
+  color: #000;
+  transform: rotateY(180deg);
+  height: 0;
+}
+
+.scroll-text {
+  height: 100%;
+  overflow-y: scroll;
+  width: 100%;
+  padding: 5%;
+}
+
+.scroll-text p {
+  /* word-break: keep-all; */
+  overflow-wrap: anywhere;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #0e0924;
+}
+
+.recipe-card-text {
+  font-size: 1rem;
+  color: rgba(14, 9, 36, .6);
+}
+
+#recipe-button-text {
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 1% 3%;
+}
+
+.short-recipe-card-text {
+  text-align: center;
+}
+
+.middle {
+  display: flex;
+  margin: 0 auto;
+}
+
+.recipe-card-text a {
+  font-size: 1rem;
+  /* color: rgba(14, 9, 36, .6); */
+  color: rgba(249, 248, 252);
+}
+
+.step-links {
+  width: 20vw;
+  margin: 0 auto 2vh auto;
+  text-align: center;
+}
+
+.current {
+  color: rgb(189, 186, 186);
+}
+
+.step-links a {
+  color: white;
+  margin-left: 2%;
+}
+
+.step-links a:hover {
+  color: white;
+  font-weight: bold;
+}
+
+/*
+#################
+RECIPE VIEW PAGE 
+#################
+ */
+
+.owner-buttons {
+  margin-top: 2vh;
+  margin-right: 1vw;
+}
+
+.masthead-image img {
+  height: 60vh;
+  width: 70%;
+  margin-bottom: 5%;
+  border-radius: 10px;
+}
+
+.recipe-title {
+  font-family: 'Bubblegum Sans', cursive;
+  font-style: italic;
+}
+
+.recipe-subtitle {
+  color: rgba(255, 255, 255, .4);
+}
+
+.btn-like {
+  border: none;
+  background: none;
+  color: white;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+#about-recipe {
+  display: flex;
+}
+
+#about-recipe li {
+  text-decoration: none;
+  list-style: none;
+  margin: 0 auto;
+}
+
+.comment-callout {
+  border-left: 3px solid yellow;
+  margin-left: 20px;
+  padding-left: 5px;
+}
+
+.comment-colour {
+  color: #0e0924;
+  font-weight: bold;
+}
+
+#comment-button {
+  display: flex;
+  margin: 0 auto;
+}
+
+/*
+#################
+  CONTACT PAGE 
+#################
+ */
+
+#contact-form {
+  border: 1px groove grey;
+  background-color: white;
+  border-radius: 15px;
+  padding: 2%;
+}
+
+.form-group {
+  margin-bottom: 2%;
+}
+
+#contact-form button {
+  text-align: center;
+  display: flex;
+  margin: 0 auto;
+}
+
+/*
+#################
+  RECIPE FORMS  
+#################
+ */
+
+.form-submit {
+  display: flex;
+  margin: 2% auto;
+}
+
+.recipe-form {
+  padding-bottom: 2%;
+}
+
+.centered {
+  text-align: center;
+  background-color: rgb(222, 235, 176);
+  width: fit-content;
+  margin: 0 auto;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+/* Signup form  */
+
+.inner-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#signup_form {
+  text-align: left;
+  margin: 5% 0 1% 0;
+  width: 100%;
+}
+
+#signup_form p {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 3% auto;
+  padding: 0;
+}
+
+#signup_form label {
+  width: 30%;
+}
+
+#signup_form input {
+  border-radius: 7px;
+}
+
+.smaller-text {
+  font-size: .8rem;
+}
+
+.summernote-div{
+  width: 70vw;
+  overflow-x: auto;
+}
+
+
+/* PROFILE PAGE  */
+
+.empty-text {
+  color: rgba(245, 245, 245, 0.836);
+  font-style: italic;
+}
+
+/* 404 page */
+
+#lost-img {
+  height: 80vh;
+  width: 50vw;
+  display: block;
+  margin: 0 auto;
+}
+
+#msg-404 {
+  font-size: 4em;
+}
+
+#msg-redirect {
+  font-size: 3em;
+}
+
+/* 
+#################
+Media Queries 
+#################
+*/
+
+@media screen and (max-width: 1024px) {
+  #signup_form {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  /* recipe cards */
+
+  .card-img-top {
+    height: 30vh;
+    width: 100%;
+  }
+
+  .flip-card {
+    height: 50vh;
+  }
+
+  /* sign up form  */
+  #signup_form {
+    padding: 0 3% 2% 3%;
+    margin-top: 0;
+  }
+
+  #sign-up-msg {
+    padding-top: 2%;
+    margin-bottom: 0;
+  }
+
+  #id_password2 {
+    margin-bottom: 2%;
+  }
+
+  #signup_form label {
+    width: 100%;
+  }
+
+  #signup_form input {
+    width: 100%;
+  }
+}
+
+@media screen and (max-height: 600px) {
+
+  #signup-box {
+    margin-bottom: 5%;
+  }
+
+  #sign-up-msg {
+    padding-top: 2%;
+    margin-bottom: 0;
+  }
+
+  #signup_form {
+    padding: 0 3% 2% 3%;
+    margin-top: 0;
+  }
+
+  .bottom-margin {
+    margin-bottom: 5%;
+  }
+
+}
+
+@media screen and (min-height: 1000px) {
+
+  .flip-card {
+    height: 30vh;
+  }
+}
