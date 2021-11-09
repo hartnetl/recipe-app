@@ -8,11 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="A recipe website with a pop culture spin. Sign up today to 
-                bookmark your faves and add your own!">
+        content="A recipe website to create and save your favourite recipes.">
     <meta name="keywords" content="recipe, recipes, cookbook, meals, dinner,
-                party, fandom, lord of the recipe, lotr, pop culture,">
-    <title>Lord of the Recipes</title>
+                party">
+    <title>Food glorious food</title>
     <!-- Fonts go here-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,10 +59,10 @@
             <div class="d-flex flex-grow-1">
                 <span class="w-100 d-lg-none d-block">
                     <!-- hidden spacer to center brand on mobile --> </span>
-                <a class="navbar-brand d-none d-lg-inline-block my-title" href="{% url 'home' %}"> LORD OF
+                <a class="navbar-brand d-none d-lg-inline-block my-title" href="{% url 'home' %}"> HOME OF
                     THE<br>RECIPES</a>
                 <a class="navbar-brand mx-auto d-lg-none d-inline-block my-title" href="{% url 'home' %}">
-                    LORD OF THE RECIPES <br> {% if user.is_authenticated %}
+                    HOME OF THE RECIPES <br> {% if user.is_authenticated %}
                     <span class="welcome-msg">Hello {{ request.user }}</span>
                     {% endif %} </a>
                 <div class="w-100 text-right">
@@ -79,13 +78,7 @@
                         <a href="{% url 'home' %}" class="nav-link m-2 menu-item">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{% url 'about' %}" class="nav-link m-2 menu-item">About</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="{% url 'recipes' %}" class="nav-link m-2 menu-item">Recipes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'contact' %}" class="nav-link m-2 menu-item">Contact Us</a>
                     </li>
                     <!-- Change view depending on if signed in or not -->
                     {% if user.is_authenticated %}
@@ -148,9 +141,7 @@
             <!-- Important links -->
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="{% url 'home' %}">Home</a></li>
-                <li class="list-inline-item"><a href="{% url 'about' %}">About</a></li>
                 <li class="list-inline-item"><a href="{% url 'recipes' %}">Recipes</a></li>
-                <li class="list-inline-item"><a href="{% url 'contact' %}">Contact</a></li>
                 {% if not user.is_authenticated %}
                 <li class="list-inline-item"><a href="{% url 'account_signup' %}">Login/Register</a></li>
                 {% endif %}
