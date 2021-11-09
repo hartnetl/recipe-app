@@ -146,7 +146,7 @@
 
                 <h3  class="comment-colour">Leave a comment:</h3>
                 <p>Posting as: {{ user.username }}</p>
-                <form method="post" style="margin-top: 1.3em;">
+                <form method="post" style="margin-top: 1.3em;" onsubmit="adminNotification();">
                     {{ comment_form | crispy }}
                     {% csrf_token %}
                     <button type="submit" id="comment-button" class="btn box-button">Submit</button>

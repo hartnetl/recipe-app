@@ -34,7 +34,7 @@ function newAlert() {
 // email admin when user posts a recipe or comment
 
 function adminNotification() {
-    emailjs.send("outlook","lotrAPPROVE")
+    // emailjs.send("outlook","lotrAPPROVE")
     .then(
         function(response) {
             console.log("SUCCESS", response);
